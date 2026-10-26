@@ -1,0 +1,46 @@
+{
+  "name": "push-wache",
+  "version": "0.1.0",
+  "description": "Hält gefährliche Befehle in Claude Code auf, bevor sie laufen: git push an fremde Hosts, --no-verify, Force-Push auf geschützte Branches, rm -rf auf breite Pfade, Zugangsdaten in der Befehlszeile",
+  "author": { "name": "Robert-P. Pelikan, oQueo", "url": "https://oqueo.io" },
+  "homepage": "https://oqueo.io",
+  "license": "MIT",
+  "userConfig": {
+    "erlaubte_hosts": {
+      "type": "string",
+      "title": "Erlaubte Push-Hosts",
+      "description": "Hosts, an die git push gehen darf, durch Komma getrennt (zum Beispiel: git.example.com, *.intern.example.com). Leer: keine Prüfung des Ziels.",
+      "default": ""
+    },
+    "geschuetzte_branches": {
+      "type": "string",
+      "title": "Geschützte Branches",
+      "description": "Branches, die nie per Force-Push überschrieben oder gelöscht werden, durch Komma getrennt.",
+      "default": "main,master"
+    },
+    "hooks_nicht_umgehen": {
+      "type": "boolean",
+      "title": "Git-Hooks nicht umgehen",
+      "description": "--no-verify bei commit und push sowie -c core.hooksPath sperren.",
+      "default": true
+    },
+    "force_sperren": {
+      "type": "boolean",
+      "title": "Force-Push sperren",
+      "description": "git push --force und -f sperren, Force auf geschützte Branches auch mit --force-with-lease.",
+      "default": true
+    },
+    "rm_sperren": {
+      "type": "boolean",
+      "title": "Breites rm -rf sperren",
+      "description": "rm -r auf Wurzel, Home-Ordner, Punkt, Stern und Laufwerks-Wurzeln sperren.",
+      "default": true
+    },
+    "geheimnisse_sperren": {
+      "type": "boolean",
+      "title": "Zugangsdaten in Befehlen sperren",
+      "description": "Bekannte Schlüssel- und Token-Formen in der Befehlszeile erkennen.",
+      "default": true
+    }
+  }
+}
